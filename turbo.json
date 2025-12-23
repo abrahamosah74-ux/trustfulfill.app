@@ -1,0 +1,22 @@
+{
+  "version": "1",
+  "tasks": {
+    "dev": {
+      "cache": false,
+      "interactive": true
+    },
+    "build": {
+      "outputs": [".next/**", "dist/**"],
+      "dependsOn": ["^build"]
+    },
+    "lint": {
+      "outputs": [".eslintcache"]
+    },
+    "type-check": {
+      "outputs": []
+    },
+    "format": {
+      "outputs": []
+    }
+  }
+}

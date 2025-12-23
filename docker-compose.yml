@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile.dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - FIREBASE_EMULATOR_HOST=firebase-emulator:8080
+    volumes:
+      - ./apps/web:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - firebase-emulator
+
+  firebase-emulator:
+    image: ghcr.io/firebase/firebase-tools-emulators:latest
+    ports:
+      - "4000:4000"  # Firebase UI
+      - "8080:8080"  # Firestore
+      - "9099:9099"  # Auth
+      - "5001:5001"  # Functions
+    volumes:
+      - ./firebase.json:/home/node/firebase.json
+      - ./firestore.rules:/home/node/firestore.rules
+      - ./apps/functions:/home/node/functions
+    environment:
+      - GCLOUD_PROJECT=trustfulfill-dev
+    command: "firebase emulators:start --project=trustfulfill-dev --only firestore,auth,functions"
