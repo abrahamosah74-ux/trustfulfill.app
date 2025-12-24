@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function GET(req: NextRequest) {
   try {
     // TODO: Fetch interventions from Firebase
-    const mockInterventions = [];
+    const mockInterventions: Array<{ id: string; reason: string; timestamp: string }> = [];
 
     return NextResponse.json(mockInterventions);
   } catch (error) {
