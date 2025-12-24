@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Providers } from '@/components/providers/index';
+import { Providers } from '@/components/providers';
 
 export const metadata: Metadata = {
   title: 'Today - TrustFulfill',

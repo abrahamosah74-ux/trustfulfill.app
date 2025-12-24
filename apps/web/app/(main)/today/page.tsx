@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { TodayView } from '@/components/orders/TodayView';
 import { TrustMetric } from '@/components/metrics/TrustMetric';
-import { fetchOrders } from '@/lib/api/orders/index';
+import { fetchOrders } from '@/lib/api/orders';
 
 export default function TodayPage() {
   const { data: orders, isLoading } = useQuery({
