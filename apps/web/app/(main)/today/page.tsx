@@ -6,14 +6,40 @@ import { TrustMetric } from '@/components/metrics/TrustMetric';
 import { fetchOrders } from '@/lib/api/orders';
 
 export default function TodayPage() {
-  const { data: orders, isLoading } = useQuery({
+  const { data: orders, isLoading, error } = useQuery({
     queryKey: ['orders'],
     queryFn: fetchOrders,
     refetchInterval: 30000, // Every 30 seconds
   });
 
+  console.log('[TodayPage] State:', { isLoading, error, ordersCount: orders?.length });
+
   if (isLoading) {
-    return <div className="p-8">Loading today's orders...</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-green-50">
+        <div className="text-center">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-800">Loading orders...</h2>
+          <div className="animate-spin rounded-full h-8 w-8 border-4 border-blue-200 border-t-blue-600 mx-auto"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-red-50 p-4">
+        <div className="bg-white rounded-lg shadow-lg p-6 max-w-md">
+          <h2 className="text-xl font-bold text-red-600 mb-2">Error loading orders</h2>
+          <p className="text-gray-700 mb-4">{(error as Error).message}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
