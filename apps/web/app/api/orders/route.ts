@@ -18,8 +18,8 @@ export async function GET(req: NextRequest) {
         customerNotes: ['Gift wrapping requested'],
         isDomestic: true,
         lastSyncStatus: 'success',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       },
     ];
 

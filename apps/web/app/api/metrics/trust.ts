@@ -5,7 +5,7 @@ export async function GET(req: NextRequest) {
     // TODO: Fetch trust metric from Firebase
     const mockMetric = {
       currentTrustStreakHours: 12.5,
-      lastInterventionAt: new Date(Date.now() - 12 * 60 * 60 * 1000),
+      lastInterventionAt: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString(),
       lastInterventionReason: 'Initial setup',
       totalInterventions: 1,
     };
