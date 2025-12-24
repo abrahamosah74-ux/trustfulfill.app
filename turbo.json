@@ -6,7 +6,8 @@
     },
     "build": {
       "outputs": [".next/**", "dist/**"],
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "inputs": ["!apps/functions/**"]
     },
     "lint": {
       "outputs": [".eslintcache"]
